@@ -22,7 +22,7 @@ export function formatCurrency(
   currency: string = "AUD",
   showCents: boolean = true
 ): string {
-  return new Intl.NumberFormat("en-AU", {
+  return new Intl.NumberFormat("en", {
     style: "currency",
     currency: currency,
     minimumFractionDigits: showCents ? 2 : 0,
@@ -38,7 +38,7 @@ export function formatCurrencyCompact(
   amount: number,
   currency: string = "AUD"
 ): string {
-  return new Intl.NumberFormat("en-AU", {
+  return new Intl.NumberFormat("en", {
     style: "currency",
     currency: currency,
     notation: "compact",
@@ -55,7 +55,7 @@ export function formatCurrencyCompact(
  * Example: 17823 → "17,823"
  */
 export function formatNumber(value: number, decimals: number = 0): string {
-  return new Intl.NumberFormat("en-AU", {
+  return new Intl.NumberFormat("en", {
     minimumFractionDigits: decimals,
     maximumFractionDigits: decimals,
   }).format(value);
