@@ -19,7 +19,7 @@ function App() {
     <>
       <div className="p-8">
         <h1 className="text-3xl font-bold">Portfolio Tracker</h1>
-        <p className="text-muted-foreground">Setup successful! 🎉</p>
+        <p className="text-muted-foreground">Setup successful! </p>
 
         <div className="mt-4 space-y-2">
           <p>Currency: {formatCurrency(15368.0, "EUR", false)}</p>
