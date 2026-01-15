@@ -28,7 +28,7 @@ function DashboardPage() {
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-gray-100 to-teal-50 font-sans">
       {/* Header */}
       <header className="border-b border-teal-200 bg-white/80 backdrop-blur-md shadow-sm">
-        <div className="container mx-auto px-4 py-4 flex items-center justify-between">
+        <div className="container mx-auto px-4 py-4 flex flex-col md:flex-row md:items-center md:justify-between gap-4">
           <div className="flex items-center gap-3">
             <span className="inline-block">
               <svg
@@ -50,16 +50,18 @@ function DashboardPage() {
               Portfolio Tracker
             </h1>
           </div>
-          <p className="text-sm text-gray-500 font-medium">
-            Welcome back, {user?.fullName || user?.email}
-          </p>
-          <Button
-            variant="outline"
-            onClick={logout}
-            className="border-teal-200 text-teal-700 hover:bg-teal-50 font-semibold transition-colors"
-          >
-            Logout
-          </Button>
+          <div className="flex items-center gap-3">
+            <span className="inline-block px-3 py-1 rounded-full bg-teal-100 text-teal-800 text-sm font-semibold shadow-sm border border-teal-200">
+              Welcome back, {user?.fullName || user?.email}
+            </span>
+            <Button
+              variant="outline"
+              onClick={logout}
+              className="border-teal-200 text-teal-700 hover:bg-teal-50 font-semibold transition-colors"
+            >
+              Logout
+            </Button>
+          </div>
         </div>
       </header>
 
