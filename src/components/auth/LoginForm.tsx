@@ -31,6 +31,16 @@ const loginSchema = z.object({
   password: z.string().min(8, "Password must be at least 8 characters long."),
 });
 
+/**
+ * Type representing the shape of the login form data.
+ *
+ * This type is inferred from the Zod validation schema (`loginSchema`),
+ * ensuring that the form data structure matches the validation rules.
+ *
+ * @typedef LoginFormData
+ * @property {string} email - The user's email address.
+ * @property {string} password - The user's password.
+ */
 type LoginFormData = z.infer<typeof loginSchema>;
 
 // ============================================================================
