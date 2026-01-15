@@ -1,3 +1,10 @@
+/**
+ * Application Entry Point
+ *
+ * This is where React mounts to the DOM.
+ * Think of it as C#'s Main() method.
+ */
+
 import React from "react";
 import ReactDOM from "react-dom/client";
 import App from "./App.tsx";

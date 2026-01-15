@@ -91,3 +91,47 @@ App.tsx
 main.jsx
 index.html
 vite-end.d.ts
+
+### Barrel Export
+
+### Class Name Utility
+
+### Data Formatters
+
+### App Constants
+
+### AXIOS API Client
+
+### Auth API Endpoints
+
+### Portfolio Endpoints
+
+### Holdings Endpoints
+
+### Transaction Endpoints
+
+### TanStack Query Configuration
+
+### Domain Entities
+
+### API Request/Response Types
+
+### Securities Endpoints
+
+### AuthContext - Authentication State
+
+### Route Guard
+
+### Login UI
+
+### Registration UI
+
+### Login Page Layout
+
+### Register Page Layout
+
+### Dashboard (placeholder)
+
+### Main Application Component (interim update, plus better theming)
+
+### Application Entry Point (update)

@@ -21,7 +21,7 @@ export default defineConfig({
     // When you call /api/auth/login, it proxies to http://localhost:5001/api/auth/login
     proxy: {
       "/api": {
-        target: "http://localhost:5001", // Our .NET backend (todo: not sure of the port yet)
+        target: "http://localhost:5000", // Our backend port (currently configured to 5000)
         changeOrigin: true,
         secure: false,
       },
