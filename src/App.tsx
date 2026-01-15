@@ -1,33 +1,70 @@
-import { formatCurrency, formatPercent } from "@/utils/formatters";
-//import { User, Portfolio } from "@/types";
-import { isAuthenticated } from "@/api/client";
-import { ENV } from "@/utils/constants";
-console.log(formatCurrency(15368.0)); // "$15,368.00"
-console.log(formatPercent(0.0402)); // "+4.02%"
+/**
+ * Main Application Component
+ *
+ * Sets up routing and providers for the entire app.
+ * Think of this as your C# Program.cs / Startup.cs
+ */
 
-console.log("Is authenticated:", isAuthenticated()); // false (no token yet)
-
-// const user: User = {
-//   id: "123",
-//   email: "test@test.com",
-//   createdAt: new Date().toISOString(),
-//   //updatedAt: new Date().toISOString(),
-// };
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { QueryClientProvider } from "@tanstack/react-query";
+import { ReactQueryDevtools } from "@tanstack/react-query-devtools";
+import { Toaster } from "@/components/ui/toaster";
+import { AuthProvider } from "@/contexts/AuthContext";
+import { ProtectedRoute } from "@/components/auth/ProtectedRoute";
+import { LoginPage } from "@/pages/auth/LoginPage";
+import { RegisterPage } from "@/pages/auth/RegisterPage";
+import { DashboardPage } from "@/pages/dashboard/DashboardPage";
+import { queryClient } from "@/lib/queryClient";
+import { ROUTES } from "@/utils/constants";
 
 function App() {
   return (
-    <>
-      <div className="p-8">
-        <h1 className="text-3xl font-bold">Portfolio Tracker</h1>
-        <p className="text-muted-foreground">Setup successful! </p>
+    // TanStack Query Provider - manages all API data fetching/caching
+    // gives all child components access to query caching, fetching, and mutation features
+    <QueryClientProvider client={queryClient}>
+      {/* Router Provider - manages navigation */}
+      <BrowserRouter>
+        {/* Auth Provider - manages authentication state */}
+        {/* Must be inside BrowserRouter because it uses useNavigate */}
+        <AuthProvider>
+          {/* Routes Definition */}
+          <Routes>
+            {/* Public Routes */}
+            <Route path={ROUTES.LOGIN} element={<LoginPage />} />
+            <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
 
-        <div className="mt-4 space-y-2">
-          <p>Currency: {formatCurrency(15368.0, "EUR", false)}</p>
-          <p>Percent: {formatPercent(0.0402)}</p>
-          <p>API URL: {ENV.API_BASE_URL}</p>
-        </div>
-      </div>
-    </>
+            {/* Protected Routes - require authentication */}
+            <Route
+              path={ROUTES.DASHBOARD}
+              element={
+                <ProtectedRoute>
+                  <DashboardPage />
+                </ProtectedRoute>
+              }
+            />
+
+            {/* Root redirect - send to dashboard if logged in, login if not */}
+            <Route
+              path={ROUTES.HOME}
+              element={<Navigate to={ROUTES.DASHBOARD} replace />}
+            />
+
+            {/* 404 - Not Found */}
+            <Route
+              path="*"
+              element={<Navigate to={ROUTES.DASHBOARD} replace />}
+            />
+          </Routes>
+
+          {/* Toast Notifications Container */}
+          <Toaster />
+        </AuthProvider>
+      </BrowserRouter>
+
+      {/* React Query DevTools - only shows in development when the site is loaded
+      i.,e localhost:3000 in our case shows an icon in the bottom right corner */}
+      {import.meta.env.DEV && <ReactQueryDevtools initialIsOpen={false} />}
+    </QueryClientProvider>
   );
 }
 
