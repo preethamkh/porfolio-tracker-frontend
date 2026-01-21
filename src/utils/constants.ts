@@ -152,5 +152,10 @@ export const ENV = {
   API_BASE_URL:
     import.meta.env.VITE_API_BASE_URL || "http://localhost:5001/api",
   APP_NAME: import.meta.env.VITE_APP_NAME || "Portfolio Tracker",
-  APP_VERSION: import.meta.env.VITE_APP_VERSION || "1.0.0",
+  // Auto-generated version: package.json version + git commit count (e.g., 1.0.0+build.123)
+  APP_VERSION: typeof __APP_VERSION__ !== 'undefined' ? __APP_VERSION__ : "1.0.0+build.dev",
+  // Build info from Vercel (automatically injected during build)
+  GIT_COMMIT_SHA: import.meta.env.VITE_VERCEL_GIT_COMMIT_SHA || "dev",
+  GIT_BRANCH: import.meta.env.VITE_VERCEL_GIT_COMMIT_REF || "local",
+  VERCEL_ENV: import.meta.env.VITE_VERCEL_ENV || "development",
 };

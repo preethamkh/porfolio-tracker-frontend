@@ -12,6 +12,9 @@
  * @property {string} VITE_APP_VERSION - The current version of the application.
  */
 
+// Global build-time constants injected by Vite
+declare const __APP_VERSION__: string;
+
 // Access the environment variables via import.meta.env
 interface ImportMetaEnv {
   readonly VITE_API_BASE_URL: string;

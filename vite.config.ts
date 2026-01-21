@@ -1,6 +1,32 @@
 import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react";
 import path from "path";
+import { execSync } from "child_process";
+import { readFileSync } from "fs";
+
+// Generate version dynamically: package.json version + git commit count
+function generateVersion() {
+  try {
+    const packageJson = JSON.parse(readFileSync("./package.json", "utf-8"));
+    const baseVersion = packageJson.version;
+
+    let buildNumber = "dev";
+    try {
+      // Get git commit count as build number
+      buildNumber = execSync("git rev-list --count HEAD", {
+        encoding: "utf-8",
+        stdio: ["pipe", "pipe", "ignore"],
+      }).trim();
+    } catch {
+      // Not a git repo or git not available, use timestamp
+      buildNumber = Date.now().toString();
+    }
+
+    return `${baseVersion}+build.${buildNumber}`;
+  } catch (error) {
+    return "1.0.0+build.unknown";
+  }
+}
 
 // https://vitejs.dev/config/
 export default defineConfig({
@@ -12,6 +38,11 @@ export default defineConfig({
     alias: {
       "@": path.resolve(__dirname, "./src"),
     },
+  },
+
+  // Inject environment variables at build time
+  define: {
+    __APP_VERSION__: JSON.stringify(generateVersion()),
   },
 
   // Dev server config

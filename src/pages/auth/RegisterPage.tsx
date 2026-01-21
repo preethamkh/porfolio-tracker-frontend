@@ -36,13 +36,21 @@ export function RegisterPage() {
         <div className="bg-white border border-teal-300 rounded-2xl p-8 shadow-xl">
           <RegisterForm />
         </div>
-        <div className="mt-8 text-center text-xs text-gray-400">
-          &copy; {new Date().getFullYear()} Portfolio Tracker. All rights
-          reserved.
-          <br />
-          <span className="text-teal-400">
+        <div className="mt-8 text-center text-xs text-gray-400 space-y-1">
+          <div>
+            &copy; {new Date().getFullYear()} Portfolio Tracker. All rights
+            reserved.
+          </div>
+          <div className="text-teal-400">
             .NET 8 + React + PostgreSQL + Redis
-          </span>
+          </div>
+          <div className="text-gray-400 font-mono text-[10px]">
+            v{ENV.APP_VERSION}
+            {ENV.GIT_COMMIT_SHA !== "dev" && (
+              <> • {ENV.GIT_COMMIT_SHA.substring(0, 7)}</>
+            )}
+            {ENV.VERCEL_ENV !== "development" && <> • {ENV.VERCEL_ENV}</>}
+          </div>
         </div>
       </div>
     </div>
