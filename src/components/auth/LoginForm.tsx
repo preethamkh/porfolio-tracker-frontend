@@ -115,26 +115,26 @@ export function LoginForm() {
     <div className="w-full max-w-md space-y-8">
       {/* Header */}
       <div className="text-center">
-        <h2 className="text-3xl font-extrabold tracking-tight text-indigo-700">
+        <h2 className="text-3xl font-extrabold tracking-tight text-teal-700">
           Welcome back
         </h2>
-        <p className="mt-2 text-slate-500 text-base">
+        <p className="mt-2 text-gray-500 text-base">
           Sign in to your account to continue
         </p>
       </div>
 
       {/* Divider */}
       <div className="flex items-center my-2">
-        <div className="flex-grow border-t border-slate-200" />
-        <span className="mx-4 text-xs text-slate-400">Sign in</span>
-        <div className="flex-grow border-t border-slate-200" />
+        <div className="flex-grow border-t border-teal-200" />
+        <span className="mx-4 text-xs text-gray-400">Sign in</span>
+        <div className="flex-grow border-t border-teal-200" />
       </div>
 
       {/* Form */}
       <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
         {/* Email Field */}
         <div className="space-y-2">
-          <Label htmlFor="email" className="text-slate-700 font-semibold">
+          <Label htmlFor="email" className="text-gray-700 font-semibold">
             Email
           </Label>
           <Input
@@ -146,7 +146,7 @@ export function LoginForm() {
             className={
               errors.email
                 ? "border-destructive focus:ring-destructive"
-                : "focus:ring-indigo-500"
+                : "focus:ring-teal-500"
             }
           />
           {errors.email && (
@@ -159,12 +159,12 @@ export function LoginForm() {
         {/* Password Field */}
         <div className="space-y-2">
           <div className="flex items-center justify-between">
-            <Label htmlFor="password" className="text-slate-700 font-semibold">
+            <Label htmlFor="password" className="text-gray-700 font-semibold">
               Password
             </Label>
             <Link
               to="#"
-              className="text-sm text-indigo-600 hover:underline font-medium transition-colors"
+              className="text-sm text-teal-600 hover:underline font-medium transition-colors"
             >
               Forgot password?
             </Link>
@@ -178,7 +178,7 @@ export function LoginForm() {
             className={
               errors.password
                 ? "border-destructive focus:ring-destructive"
-                : "focus:ring-indigo-500"
+                : "focus:ring-teal-500"
             }
           />
           {errors.password && (
@@ -191,7 +191,7 @@ export function LoginForm() {
         {/* Submit Button */}
         <Button
           type="submit"
-          className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-150"
+          className="w-full bg-teal-600 hover:bg-teal-700 text-white font-bold py-2 px-4 rounded-lg transition-colors duration-150"
           disabled={isSubmitting}
         >
           {isSubmitting ? (
@@ -207,10 +207,10 @@ export function LoginForm() {
 
       {/* Register Link */}
       <div className="text-center text-sm mt-6">
-        <span className="text-slate-500">Don't have an account? </span>
+        <span className="text-gray-500">Don't have an account? </span>
         <Link
           to={ROUTES.REGISTER}
-          className="text-indigo-600 hover:underline font-semibold transition-colors"
+          className="text-teal-600 hover:underline font-semibold transition-colors"
         >
           Sign up
         </Link>

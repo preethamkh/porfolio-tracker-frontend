@@ -202,7 +202,7 @@ export function HoldingsTable({ holdings, isLoading, onRefresh }: HoldingsTableP
             <div className="space-y-4">
                 {/* Skeleton loading table, arbitraty 5 placeholder rows */}
                 {[...Array(5)].map((_, i) => (
-                    <div key={i} className="h-12 bg-muted animate-pulse rounded" />
+                    <div key={i} className="h-12 bg-gradient-to-r from-teal-50 to-blue-50 animate-pulse rounded-lg border border-teal-100" />
                 ))}
             </div>
         );
@@ -234,9 +234,9 @@ export function HoldingsTable({ holdings, isLoading, onRefresh }: HoldingsTableP
         <div className="space-y-4">
             {/* Header with Refresh */}
             <div className="flex items-center justify-between">
-                <h2 className="text-2xl font-bold">Holdings</h2>
+                <h2 className="text-2xl font-bold text-gray-900">Holdings</h2>
                 {onRefresh && (
-                    <Button variant="outline" size="sm" onClick={onRefresh}>
+                    <Button variant="outline" size="sm" onClick={onRefresh} className="border-teal-300 text-teal-700 hover:bg-teal-50">
                         <RefreshCw className="w-4 h-4 mr-2" />
                         Refresh
                     </Button>
@@ -244,10 +244,10 @@ export function HoldingsTable({ holdings, isLoading, onRefresh }: HoldingsTableP
             </div>
 
             {/* Table */}
-            <div className="border rounded-lg">
+            <div className="border-2 border-teal-200 rounded-2xl overflow-hidden shadow-md bg-white">
                 <Table>
                     <TableHeader>
-                        <TableRow className="bg-muted/50">
+                        <TableRow className="bg-gradient-to-r from-teal-50 to-blue-50 border-b-2 border-teal-200">{/* Symbol */}
                             {/* Symbol */}
                             <TableHead>
                                 <Button
@@ -343,14 +343,14 @@ export function HoldingsTable({ holdings, isLoading, onRefresh }: HoldingsTableP
 
                     <TableBody>
                         {sortedHoldings.map((holding) => (
-                            <TableRow key={holding.id} className="hover:bg-muted/30">
+                            <TableRow key={holding.id} className="hover:bg-teal-50/50 transition-colors border-b border-teal-100">
                                 {/* Symbol */}
                                 <TableCell className="font-medium">
                                     <div>
-                                        <div className="font-bold text-primary">
+                                        <div className="font-bold text-teal-700">
                                             {holding.security.symbol}
                                         </div>
-                                        <div className="text-xs text-muted-foreground">
+                                        <div className="text-xs text-gray-500">
                                             {holding.security.name}
                                         </div>
                                     </div>
@@ -366,7 +366,7 @@ export function HoldingsTable({ holdings, isLoading, onRefresh }: HoldingsTableP
                                 <TableCell className="text-right numeric">
                                     {holding.security.currentPrice !== undefined && holding.security.currentPrice !== null
                                         ? formatCurrency(holding.currentPrice, holding.security.currency)
-                                        : <span className="text-muted-foreground italic">N/A</span>
+                                        : <span className="text-gray-400 italic">N/A</span>
                                     }
                                 </TableCell>
 
@@ -406,10 +406,10 @@ export function HoldingsTable({ holdings, isLoading, onRefresh }: HoldingsTableP
             </div>
 
             {/* Summary Footer */}
-            <div className="bg-muted/30 rounded-lg p-4 border border-border">
+            <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-2xl p-4 border-2 border-teal-200 shadow-sm">
                 <div className="flex justify-between items-center">
-                    <span className="text-muted-foreground">Total Holdings:</span>
-                    <span className="font-semibold">{sortedHoldings.length}</span>
+                    <span className="text-gray-600 font-medium">Total Holdings:</span>
+                    <span className="font-bold text-teal-700">{sortedHoldings.length}</span>
                 </div>
             </div>
         </div>

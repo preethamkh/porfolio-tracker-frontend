@@ -27,21 +27,21 @@ export function EmptyState({
 }: EmptyStateProps) {
     return (
         <div
-            className={`text-center py-12 px-4 border-2 border-dashed border-border rounded-lg bg-muted/20 ${className || ''
+            className={`text-center py-12 px-4 border-2 border-dashed border-teal-200 rounded-2xl bg-gradient-to-br from-white via-teal-50 to-blue-50 shadow-sm ${className || ''
                 }`}
         >
-            {icon && <div className="mb-4 flex justify-center text-muted-foreground">{icon}</div>}
+            {icon && <div className="mb-4 flex justify-center text-teal-600">{icon}</div>}
 
-            <h3 className="text-lg font-semibold mb-2">{title}</h3>
+            <h3 className="text-lg font-semibold mb-2 text-gray-900">{title}</h3>
 
             {description && (
-                <p className="text-muted-foreground text-sm mb-6 max-w-md mx-auto">
+                <p className="text-gray-600 text-sm mb-6 max-w-md mx-auto">
                     {description}
                 </p>
             )}
 
             {action && (
-                <Button onClick={action.onClick} variant="default">
+                <Button onClick={action.onClick} variant="default" className="bg-teal-600 hover:bg-teal-700 text-white">
                     {action.label}
                 </Button>
             )}

@@ -21,14 +21,14 @@ export function ErrorDisplay({
     className
 }: ErrorDisplayProps) {
     return (
-        <div className={`bg-destructive/10 border border-destructive rounded-lg p-6 ${className || ''}`}>
+        <div className={`bg-red-50 border-2 border-red-200 rounded-2xl p-6 shadow-md ${className || ''}`}>
             <div className="flex items-start gap-4">
-                <AlertCircle className="w-6 h-6 text-destructive flex-shrink-0 mt-1" />
+                <AlertCircle className="w-6 h-6 text-red-600 flex-shrink-0 mt-1" />
                 <div className="flex-1">
-                    <h3 className="font-semibold text-destructive mb-2">{title}</h3>
-                    <p className="text-sm text-muted-foreground mb-4">{message}</p>
+                    <h3 className="font-semibold text-red-700 mb-2">{title}</h3>
+                    <p className="text-sm text-red-600 mb-4">{message}</p>
                     {onRetry && (
-                        <Button variant="outline" size="sm" onClick={onRetry}>
+                        <Button variant="outline" size="sm" onClick={onRetry} className="border-red-300 text-red-700 hover:bg-red-50">
                             Try Again
                         </Button>
                     )}
@@ -47,7 +47,7 @@ export function ErrorPage({
     onRetry
 }: ErrorDisplayProps) {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-background p-4">
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-gray-100 to-teal-50 p-4">
             <div className="w-full max-w-md">
                 <ErrorDisplay
                     title={title}
