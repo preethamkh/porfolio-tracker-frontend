@@ -22,9 +22,11 @@ import {
     TableRow,
 } from '@/components/ui/table';
 import { Button } from '@/components/ui/button';
-import { ArrowUpDown, RefreshCw } from 'lucide-react';
+import { ArrowUpDown, RefreshCw, Inbox } from 'lucide-react';
 import { formatCurrency, formatNumber, formatPercent, formatShares } from '@/utils/formatters';
 import { cn } from '@/lib/utils';
+
+import { EmptyState } from '@/components/common/EmptyState';
 
 // ============================================================================
 // TYPES
@@ -185,10 +187,15 @@ export function HoldingsTable({ holdings, isLoading, onRefresh }: HoldingsTableP
 
     if (sortedHoldings.length === 0) {
         return (
-            <div className="text-center py-12 border border-dashed border-border rounded-lg">
-                <p className="text-muted-foreground mb-4">No holdings in this portfolio yet</p>
-                <Button variant="outline">Add Your First Holding</Button>
-            </div>
+            <EmptyState
+                icon={<Inbox className="w-12 h-12" />}
+                title="No holdings in this portfolio yet"
+                description="Start building your portfolio by adding your first holding"
+                action={{
+                    label: 'Add Your First Holding',
+                    onClick: () => console.log('Add holding clicked'), // TODO: Wire up to add transaction dialog
+                }}
+            />
         );
     }
 
