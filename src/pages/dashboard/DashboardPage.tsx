@@ -109,11 +109,11 @@ export function DashboardPage() {
 
   if (portfolioError || holdingsError) {
     return (
-      <div className="min-h-screen bg-background">
-        <header className="border-b border-border bg-card">
+      <div className="min-h-screen bg-gradient-to-br from-blue-50 via-gray-100 to-teal-50">
+        <header className="border-b border-teal-200 bg-white shadow-sm">
           <div className="container mx-auto px-4 py-4 flex items-center justify-between">
-            <h1 className="text-2xl font-bold">Portfolio Tracker</h1>
-            <Button variant="outline" onClick={logout}>
+            <h1 className="text-2xl font-bold text-gray-900">Portfolio Tracker</h1>
+            <Button variant="outline" onClick={logout} className="border-teal-300 text-teal-700 hover:bg-teal-50">
               Logout
             </Button>
           </div>
@@ -136,45 +136,52 @@ export function DashboardPage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-blue-50 via-gray-100 to-teal-50 font-sans">
       {/* Header */}
-      <header className="border-b border-border bg-card sticky top-0 z-10">
+      <header className="border-b border-teal-200 bg-white sticky top-0 z-10 shadow-sm">
         <div className="container mx-auto px-4 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h1 className="text-2xl font-bold">Portfolio Tracker</h1>
-              <p className="text-sm text-muted-foreground">
+              <h1 className="text-2xl font-bold text-gray-900">Portfolio Tracker</h1>
+              <p className="text-sm text-gray-600">
                 {portfolio?.name || 'My Portfolio'}
               </p>
             </div>
-            <Button variant="outline" onClick={logout}>
-              Logout
-            </Button>
+            <div className="flex items-center gap-4">
+              {/* User Info */}
+              <div className="hidden md:block text-right">
+                <p className="text-sm font-semibold text-gray-900">{user?.fullName || user?.email}</p>
+                <p className="text-xs text-gray-500">{user?.email}</p>
+              </div>
+              <Button variant="outline" onClick={logout} className="border-teal-300 text-teal-700 hover:bg-teal-50">
+                Logout
+              </Button>
+            </div>
           </div>
         </div>
       </header>
 
       {/* Portfolio Summary */}
-      <div className="bg-card border-b border-border">
+      <div className="bg-white border-b border-teal-200">
         <div className="container mx-auto px-4 py-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Total Value */}
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Total Value</p>
-              <p className="text-2xl font-bold">
+              <p className="text-sm text-gray-600 mb-1">Total Value</p>
+              <p className="text-2xl font-bold text-gray-900">
                 {formatCurrency(summary.totalValue, portfolio?.currency || 'AUD')}
               </p>
             </div>
 
             {/* Total Cost */}
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Total Cost</p>
-              <p className="text-2xl font-bold">
+              <p className="text-sm text-gray-600 mb-1">Total Cost</p>
+              <p className="text-2xl font-bold text-gray-900">
                 {formatCurrency(summary.totalCost, portfolio?.currency || 'AUD')}
               </p>
             </div>
 
             {/* Total Gain/Loss */}
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Total Gain/Loss</p>
+              <p className="text-sm text-gray-600 mb-1">Total Gain/Loss</p>
               <p
                 className={`text-2xl font-bold ${summary.totalGain >= 0 ? 'text-profit' : 'text-loss'
                   }`}
@@ -185,7 +192,7 @@ export function DashboardPage() {
 
             {/* Gain % */}
             <div>
-              <p className="text-sm text-muted-foreground mb-1">Return %</p>
+              <p className="text-sm text-gray-600 mb-1">Return %</p>
               <p
                 className={`text-2xl font-bold ${summary.totalGainPercent >= 0 ? 'text-profit' : 'text-loss'
                   }`}
@@ -231,41 +238,8 @@ export function DashboardPage() {
         </div>
       </section>
 
-      {/* Main Content */}
-      <main className="container mx-auto px-4 py-8">
-        <div className="bg-white border border-teal-300 rounded-2xl p-10 shadow-xl max-w-2xl mx-auto text-center">
-          <h2 className="text-3xl font-extrabold text-teal-700 mb-4">
-            Authentication Working!
-          </h2>
-          <p className="text-gray-500 mb-8">
-            You successfully logged in. (TBD) - Holdings table will go here.
-          </p>
-
-          <div className="bg-teal-50 rounded-xl p-8 max-w-md mx-auto text-left shadow-sm">
-            <h3 className="font-semibold text-teal-700 mb-4 text-lg">
-              Your Details
-            </h3>
-            <dl className="space-y-4 text-base">
-              <div className="flex justify-between items-center">
-                <dt className="text-gray-500 font-medium">Email:</dt>
-                <dd className="font-semibold text-gray-800">{user?.email}</dd>
-              </div>
-              <div className="flex justify-between items-center">
-                <dt className="text-gray-500 font-medium">Full Name:</dt>
-                <dd className="font-semibold text-gray-800">
-                  {user?.fullName || "Not set"}
-                </dd>
-              </div>
-              <div className="flex justify-between items-center">
-                <dt className="text-gray-500 font-medium">User ID:</dt>
-                <dd className="font-mono text-xs text-teal-700">{user?.id}</dd>
-              </div>
-            </dl>
-          </div>
-        </div>
-      </main>
       {/* Footer */}
-      <footer className="mt-12 text-center text-xs text-gray-400">
+      <footer className="mt-12 text-center text-xs text-gray-400 pb-8">
         &copy; {new Date().getFullYear()} Portfolio Tracker. All rights
         reserved.
       </footer>
