@@ -27,13 +27,13 @@ export function LoadingSpinner({
         <div className="flex flex-col items-center justify-center gap-2">
             <div
                 className={cn(
-                    'border-primary border-t-transparent rounded-full animate-spin',
+                    'border-teal-600 border-t-transparent rounded-full animate-spin',
                     sizeClasses[size],
                     className
                 )}
             />
             {message && (
-                <p className="text-sm text-muted-foreground">{message}</p>
+                <p className="text-sm text-gray-600">{message}</p>
             )}
         </div>
     );
@@ -44,8 +44,10 @@ export function LoadingSpinner({
  */
 export function LoadingPage({ message = 'Loading...' }: { message?: string }) {
     return (
-        <div className="min-h-screen flex items-center justify-center bg-background">
-            <LoadingSpinner size="lg" message={message} />
+        <div className="min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-gray-100 to-teal-50">
+            <div className="bg-white border border-teal-300 rounded-2xl p-12 shadow-xl">
+                <LoadingSpinner size="lg" message={message} />
+            </div>
         </div>
     );
 }
