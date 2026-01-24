@@ -8,8 +8,6 @@
 import { useAuth } from "@/contexts/AuthContext";
 
 import { Button } from "@/components/ui/button";
-import { RoadmapTimeline } from "@/components/common/RoadmapTimeline";
-import { ROADMAP } from "@/utils/roadmap";
 
 import { useGetDefaultPortfolio } from "@/api/hooks/usePortfolios";
 import { useGetPortfolioHoldings } from "@/api/hooks/useHoldings";
