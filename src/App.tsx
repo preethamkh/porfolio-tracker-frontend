@@ -17,6 +17,8 @@ import DashboardPage from "@/pages/dashboard/DashboardPage";
 import { queryClient } from "@/lib/queryClient";
 import { ROUTES } from "@/utils/constants";
 
+import SearchTest from "./pages/test/SearchTest";
+
 function App() {
   return (
     // TanStack Query Provider - manages all API data fetching/caching
@@ -32,6 +34,9 @@ function App() {
             {/* Public Routes */}
             <Route path={ROUTES.LOGIN} element={<LoginPage />} />
             <Route path={ROUTES.REGISTER} element={<RegisterPage />} />
+
+            {/* Test Route - Public for easy testing */}
+            <Route path="/test-search" element={<SearchTest />} />
 
             {/* Protected Routes - require authentication */}
             <Route
