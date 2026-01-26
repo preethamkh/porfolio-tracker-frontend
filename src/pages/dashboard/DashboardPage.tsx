@@ -242,14 +242,14 @@ export function DashboardPage() {
       {/* Main Content - Portfolio Overview */}
       <main className="container mx-auto px-4 py-8">
         {/* Portfolio Summary Cards */}
-        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
-          <div className="flex items-center justify-between mb-4">
-            <h2 className="text-xl font-semibold text-gray-900">
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-4 md:p-6 mb-6">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 mb-4">
+            <h2 className="text-lg md:text-xl font-semibold text-gray-900">
               Portfolio Overview
             </h2>
             <AddTransactionDialog portfolioId={portfolio?.id || ""} />
           </div>
-          <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6">
             {/* Total Value */}
             <div>
               <div className="flex items-center gap-2 mb-1">
@@ -315,17 +315,17 @@ export function DashboardPage() {
           {/* Top & Bottom Performers */}
           {holdings.length > 0 &&
             (summary.topPerformer || summary.bottomPerformer) && (
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4 mt-4 md:mt-6">
                 {/* Top Performer */}
                 {summary.topPerformer && (
-                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-4">
+                  <div className="bg-gradient-to-br from-green-50 to-emerald-50 border border-green-200 rounded-lg p-3 md:p-4">
                     <div className="flex items-center gap-2 mb-2">
-                      <TrendingUp className="h-5 w-5 text-green-600" />
-                      <p className="text-sm font-semibold text-green-900">
+                      <TrendingUp className="h-4 w-4 md:h-5 md:w-5 text-green-600" />
+                      <p className="text-xs md:text-sm font-semibold text-green-900">
                         Best Performer
                       </p>
                     </div>
-                    <p className="text-lg font-bold text-gray-900">
+                    <p className="text-base md:text-lg font-bold text-gray-900">
                       {summary.topPerformer.symbol}
                     </p>
                     <p className="text-xs text-gray-600 mb-1">
@@ -349,14 +349,14 @@ export function DashboardPage() {
                 {/* Bottom Performer */}
                 {summary.bottomPerformer &&
                   summary.bottomPerformer.gainLoss < 0 && (
-                    <div className="bg-gradient-to-br from-red-50 to-pink-50 border border-red-200 rounded-lg p-4">
+                    <div className="bg-gradient-to-br from-red-50 to-pink-50 border border-red-200 rounded-lg p-3 md:p-4">
                       <div className="flex items-center gap-2 mb-2">
-                        <TrendingDown className="h-5 w-5 text-red-600" />
-                        <p className="text-sm font-semibold text-red-900">
+                        <TrendingDown className="h-4 w-4 md:h-5 md:w-5 text-red-600" />
+                        <p className="text-xs md:text-sm font-semibold text-red-900">
                           Worst Performer
                         </p>
                       </div>
-                      <p className="text-lg font-bold text-gray-900">
+                      <p className="text-base md:text-lg font-bold text-gray-900">
                         {summary.bottomPerformer.symbol}
                       </p>
                       <p className="text-xs text-gray-600 mb-1">
@@ -384,10 +384,12 @@ export function DashboardPage() {
 
           {/* Quick Stats Bar */}
           {holdings.length > 0 && (
-            <div className="mt-4 flex items-center justify-end text-sm text-gray-600 bg-gray-50 rounded-lg px-4 py-2 border border-gray-200">
+            <div className="mt-3 md:mt-4 flex items-center justify-end text-sm text-gray-600 bg-gray-50 rounded-lg px-3 md:px-4 py-2 border border-gray-200">
               <div className="flex items-center gap-2">
                 <Clock className="h-3 w-3 text-gray-400" />
-                <span className="text-xs">Last updated: just now</span>
+                <span className="text-[10px] md:text-xs">
+                  Last updated: just now
+                </span>
               </div>
             </div>
           )}
@@ -448,17 +450,7 @@ export function DashboardPage() {
 
         {/* Holdings Table */}
         <div className="bg-white rounded-lg shadow-sm border border-gray-200">
-          <div className="p-6">
-            <div className="flex items-center justify-between mb-4">
-              <div>
-                <h2 className="text-lg font-semibold text-gray-900">
-                  Holdings Detail
-                </h2>
-                <p className="text-xs text-gray-500">
-                  Individual position breakdown
-                </p>
-              </div>
-            </div>
+          <div className="p-4 md:p-6">
             <HoldingsTable
               holdings={holdings}
               isLoading={isLoadingHoldings}

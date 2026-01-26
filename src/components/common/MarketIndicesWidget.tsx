@@ -49,13 +49,13 @@ export function MarketIndicesWidget() {
   ];
 
   return (
-    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-y border-blue-200">
+    <div className="bg-gradient-to-r from-blue-50 to-indigo-50 border-y border-blue-200 overflow-hidden">
       <div className="container mx-auto px-4 py-3">
-        <div className="flex items-center justify-between">
-          <div className="flex items-center gap-3">
+        <div className="flex items-center justify-between gap-4">
+          <div className="flex items-center gap-3 flex-shrink-0">
             <div className="flex items-center gap-2">
               <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-              <span className="text-sm font-semibold text-gray-700">
+              <span className="text-xs md:text-sm font-semibold text-gray-700">
                 Markets Open
               </span>
             </div>
@@ -64,7 +64,10 @@ export function MarketIndicesWidget() {
             </span>
           </div>
 
-          <div className="flex items-center gap-6 overflow-x-auto">
+          <div
+            className="flex items-center gap-4 md:gap-6 overflow-x-auto flex-1 -mr-4 pr-4"
+            style={{ scrollbarWidth: "none", msOverflowStyle: "none" }}
+          >
             {indices.map((index) => (
               <div
                 key={index.symbol}
