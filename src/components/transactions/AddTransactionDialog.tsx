@@ -222,7 +222,7 @@ export default function AddTransactionDialog({
             <FormField
               control={form.control}
               name="symbol"
-              render={({ field }) => (
+              render={({}) => (
                 <FormItem>
                   <FormLabel>Security</FormLabel>
                   <FormControl>
