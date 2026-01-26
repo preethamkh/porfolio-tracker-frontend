@@ -36,7 +36,7 @@ export function RoadmapTimeline({ roadmap, condensed }: RoadmapTimelineProps) {
                 <div className="flex flex-wrap items-center gap-2 mt-1">
                   <span className="text-xs text-gray-400">{item.date}</span>
                   {item.status === "in-progress" && (
-                    <span className="px-2 py-0.5 rounded bg-blue-100 text-blue-700 text-xs font-semibold">
+                    <span className="px-2 py-0.5 rounded bg-teal-100 text-teal-700 text-xs font-semibold">
                       In Progress
                     </span>
                   )}
