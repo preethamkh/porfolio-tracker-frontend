@@ -66,7 +66,7 @@ export interface SecuritySearchParams {
 export interface TransactionFilterParams {
   startDate?: string;
   endDate?: string;
-  transactionType?: "BUY" | "SELL";
+  transactionType?: "BUY" | "SELL" | "INVALID";
 }
 
 // ============================================================================
@@ -76,7 +76,7 @@ export interface TransactionFilterParams {
 export interface BulkCreateTransactionsDto {
   transactions: Array<{
     securitySymbol: string;
-    transactionType: "BUY" | "SELL";
+    transactionType: "BUY" | "SELL" | "INVALID";
     shares: number;
     pricePerShare: number;
     transactionDate: string;
