@@ -35,7 +35,7 @@ export function useSecuritySearch(
     queryKey: securitiesKeys.search(query, limit),
     queryFn: () => searchSecurities(query, limit),
     enabled: enabled && query.length >= 2,
-    staleTime: 5 * 60 * 1000, // 5 minutes
+    staleTime: 12 * 60 * 60 * 1000, // 12 hours
     // Don't refetch on window focus (search results don't change that fast)
     refetchOnWindowFocus: false,
   });
@@ -82,7 +82,7 @@ export function useSecurityBySymbol(symbol: string, enabled = true) {
  * Hook: Get or create security by symbol
  * Useful when adding transactions - ensures security exists
  */
-export function useOrCreateSecurity() {
+export function useGetOrCreateSecurity() {
   const queryClient = useQueryClient();
   const { toast } = useToast();
   return useMutation({

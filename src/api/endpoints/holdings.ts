@@ -38,6 +38,29 @@ export async function getHoldingById(
 }
 
 /**
+ * Find holding by security ID
+ * Returns null if not found
+ */
+export async function findHoldingBySecurityId(
+  userId: string,
+  portfolioId: string,
+  securityId: string,
+): Promise<Holding | null> {
+  try {
+    // Get all holdings for the portfolio
+    const holdings = await getPortfolioHoldings(portfolioId, userId);
+
+    // Find the one matching this security
+    const holding = holdings.find((h) => h.securityId === securityId);
+
+    return holding || null;
+  } catch (error) {
+    console.error("Error finding holding:", error);
+    return null;
+  }
+}
+
+/**
  * Create a new holding
  * POST /api/users/{userId}/portfolios/{portfolioId}/holdings
  */

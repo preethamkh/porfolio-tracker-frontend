@@ -129,14 +129,14 @@ export default function SecuritySearchCombobox({
               key={security.id}
               onClick={() => handleSelect(security)}
               onMouseEnter={() => setSelectedIndex(index)}
-              className={`w-full px-4 py-3 text-left hover:bg-gray-50 transition-colors border-b border-gray-100 last:border-b-0 ${
-                index === selectedIndex ? "bg-blue-50" : ""
+              className={`w-full px-4 py-3 text-left hover:bg-teal-50 transition-colors border-b border-gray-100 last:border-b-0 ${
+                index === selectedIndex ? "bg-teal-50" : ""
               }`}
             >
               <div className="flex items-start justify-between">
                 <div className="flex-1">
                   <div className="flex items-center gap-2">
-                    <TrendingUp className="h-4 w-4 text-blue-600" />
+                    <TrendingUp className="h-4 w-4 text-teal-600" />
                     <span className="font-semibold text-gray-900">
                       {security.symbol}
                     </span>

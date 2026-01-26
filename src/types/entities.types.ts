@@ -133,6 +133,7 @@ export interface ExternalSecuritySearchDto {
 
 export interface Holding {
   id: string;
+  holdingId?: string; // API response uses this name
   portfolioId: string;
   securityId: string;
   totalShares: number;
@@ -166,7 +167,7 @@ export interface UpdateHoldingDto {
 // TRANSACTION
 // ============================================================================
 
-export type TransactionType = "BUY" | "SELL";
+export type TransactionType = "Buy" | "Sell";
 
 export interface Transaction {
   id: string;
@@ -186,7 +187,7 @@ export interface CreateTransactionDto {
   transactionType: TransactionType;
   shares: number;
   pricePerShare: number;
-  totalAmount: number;
+  //totalAmount: number; // this will be calculated
   fees?: number;
   transactionDate: string; // ISO format: "2024-01-15T00:00:00Z"
   notes?: string;
