@@ -56,39 +56,40 @@ export function DashboardPage() {
 
     let hasMissingPrices = false;
 
+    // OPTIMIZATION: Backend HoldingDto already calculates per-holding values
+    // (CurrentValue, TotalCost, UnrealizedGainLoss, etc.) in HoldingService.MapToHoldingDtoAsync
+    // We just sum them instead of recalculating to ensure consistency with HoldingsTable
+
+    // Sum up CurrentValue (shares * current price) from each holding
     const totalValue = holdings.reduce((sum, h) => {
-      // SAFETY: Backend may not populate security object (EF navigation property issue)
-      // Skip this holding if security is undefined/null to prevent crash
-      if (!h?.security) {
-        console.warn("Holding missing security object:", h);
-        hasMissingPrices = true;
-        return sum;
-      }
+      // SAFETY: Backend returns currentValue as flat property on HoldingDto
+      // Use type assertion since our Holding interface doesn't include these calculated fields yet
+      const currentValue = (h as any).currentValue ?? 0;
 
-      // SAFETY: Use ?? (nullish coalescing) to default to 0 if currentPrice is null/undefined
-      // This handles cases where backend SecurityDto doesn't include currentPrice
-      const currentPrice = h.security.currentPrice ?? 0;
-
-      // Track if price data is unavailable for warning banner
+      // Track if price data is missing for warning banner
       if (
-        h.security.currentPrice === undefined ||
-        h.security.currentPrice === null
+        (h as any).currentPrice === undefined ||
+        (h as any).currentPrice === null
       ) {
         hasMissingPrices = true;
       }
 
-      // SAFETY: Protect totalShares in case it's null/undefined
-      return sum + (h.totalShares ?? 0) * currentPrice;
+      return sum + currentValue;
     }, 0);
 
+    // Sum up TotalCost (shares * average cost) from each holding
     const totalCost = holdings.reduce((sum, h) => {
-      // SAFETY: Use ?? for all numeric fields that might be null/undefined
-      const avgCost = h.averageCost ?? 0;
-      const shares = h.totalShares ?? 0;
-      return sum + shares * avgCost;
+      const holdingCost = (h as any).totalCost ?? 0;
+      return sum + holdingCost;
     }, 0);
 
-    const totalGain = totalValue - totalCost;
+    // Sum up UnrealizedGainLoss (current value - total cost) from each holding
+    const totalGain = holdings.reduce((sum, h) => {
+      const unrealizedGain = (h as any).unrealizedGainLoss ?? 0;
+      return sum + unrealizedGain;
+    }, 0);
+
+    // Calculate portfolio-level gain percentage
     const totalGainPercent = totalCost > 0 ? totalGain / totalCost : 0;
 
     return {
