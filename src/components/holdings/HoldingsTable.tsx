@@ -436,16 +436,6 @@ export function HoldingsTable({
           </TableBody>
         </Table>
       </div>
-
-      {/* Summary Footer */}
-      <div className="bg-gradient-to-r from-teal-50 to-blue-50 rounded-2xl p-4 border-2 border-teal-200 shadow-sm">
-        <div className="flex justify-between items-center">
-          <span className="text-gray-600 font-medium">Total Holdings:</span>
-          <span className="font-bold text-teal-700">
-            {sortedHoldings.length}
-          </span>
-        </div>
-      </div>
     </div>
   );
 }

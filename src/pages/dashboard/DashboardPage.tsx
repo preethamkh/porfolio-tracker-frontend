@@ -239,9 +239,16 @@ export function DashboardPage() {
       {/* Market Indices */}
       <MarketIndicesWidget />
 
-      {/* Portfolio Summary */}
-      <div className="bg-white border-b border-teal-200">
-        <div className="container mx-auto px-4 py-6">
+      {/* Main Content - Portfolio Overview */}
+      <main className="container mx-auto px-4 py-8">
+        {/* Portfolio Summary Cards */}
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200 p-6 mb-6">
+          <div className="flex items-center justify-between mb-4">
+            <h2 className="text-xl font-semibold text-gray-900">
+              Portfolio Overview
+            </h2>
+            <AddTransactionDialog portfolioId={portfolio?.id || ""} />
+          </div>
           <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
             {/* Total Value */}
             <div>
@@ -377,26 +384,15 @@ export function DashboardPage() {
 
           {/* Quick Stats Bar */}
           {holdings.length > 0 && (
-            <div className="mt-4 flex items-center gap-6 text-sm text-gray-600 bg-gray-50 rounded-lg px-4 py-3 border border-gray-200">
+            <div className="mt-4 flex items-center justify-end text-sm text-gray-600 bg-gray-50 rounded-lg px-4 py-2 border border-gray-200">
               <div className="flex items-center gap-2">
-                <span className="font-semibold text-gray-700">Holdings:</span>
-                <span>{summary.holdingsCount}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <span className="font-semibold text-gray-700">
-                  Total Shares:
-                </span>
-                <span>{summary.totalShares.toLocaleString()}</span>
-              </div>
-              <div className="flex items-center gap-2">
-                <Clock className="h-4 w-4 text-gray-500" />
+                <Clock className="h-3 w-3 text-gray-400" />
                 <span className="text-xs">Last updated: just now</span>
               </div>
             </div>
           )}
 
           {/* VISUAL FEEDBACK: Show warning when price data is missing */}
-          {/* hasMissingPrices flag is set when security object or currentPrice is null/undefined */}
           {summary.hasMissingPrices && (
             <div className="mt-4 bg-yellow-50 border border-yellow-200 rounded-lg p-3 flex items-start gap-2">
               <svg
@@ -422,10 +418,7 @@ export function DashboardPage() {
             </div>
           )}
         </div>
-      </div>
 
-      {/* Main Content - Holdings Table */}
-      <main className="container mx-auto px-4 py-8">
         {/* Charts Section */}
         {holdings.length > 0 && (
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
@@ -454,20 +447,25 @@ export function DashboardPage() {
         )}
 
         {/* Holdings Table */}
-        <div className="flex items-center justify-between mb-6">
-          <div>
-            <h2 className="text-xl font-semibold text-gray-900">Holdings</h2>
-            <p className="text-sm text-gray-500">
-              Manage your portfolio positions
-            </p>
+        <div className="bg-white rounded-lg shadow-sm border border-gray-200">
+          <div className="p-6">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <h2 className="text-lg font-semibold text-gray-900">
+                  Holdings Detail
+                </h2>
+                <p className="text-xs text-gray-500">
+                  Individual position breakdown
+                </p>
+              </div>
+            </div>
+            <HoldingsTable
+              holdings={holdings}
+              isLoading={isLoadingHoldings}
+              onRefresh={refetchHoldings}
+            />
           </div>
-          <AddTransactionDialog portfolioId={portfolio?.id || ""} />
         </div>
-        <HoldingsTable
-          holdings={holdings}
-          isLoading={isLoadingHoldings}
-          onRefresh={refetchHoldings}
-        />
       </main>
 
       {/* Footer */}
