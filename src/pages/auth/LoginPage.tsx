@@ -31,8 +31,7 @@ export function LoginPage() {
             </h1>
             <span className="block h-1 w-20 mx-auto mt-4 rounded-full bg-gradient-to-r from-teal-400 via-gray-300 to-teal-400 opacity-60"></span>
             <p className="mt-6 text-lg md:text-xl text-gray-700 font-medium text-center max-w-xl">
-              A modern, multi-stack architecture to track your investment
-              portfolio
+              Track and manage your investment portfolio in one secure place.
             </p>
           </div>
 
